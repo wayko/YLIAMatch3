@@ -112,9 +112,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac96ce91ba6ba92498bd3e6da1b708b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swipeAngle: 0
   column: 0
   row: 0
   targetX: 0
   targetY: 0
   isMatched: 0
+  previousColumn: 0
+  previousRow: 0
+  swipeAngle: 0
+  swipeResist: 1
+  isColumnBomb: 0
+  isRowBomb: 0
+  rowBomb: {fileID: 1862286532103597316, guid: e05b4eb1266bc054da4864089a347b45, type: 3}
+  columnBomb: {fileID: 2774915433327091170, guid: 1b62b7d26f661084bade550ec846aeac,
+    type: 3}
