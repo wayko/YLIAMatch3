@@ -1,28 +1,43 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Dot : MonoBehaviour
 {
     [Header("Board Varialbe")]
-    private FindMatches findMatches;
-    private Vector2 firstTouchPosition;
-    private Vector2 finalTouchPosition;
-    public float swipeAngle = 0;
     public int column;
     public int row;
     public int targetX;
     public int targetY;
-    private GameObject otherDot;
-    private Board board;
-    private Vector2 tempPosition;
     public bool isMatched = false;
     public int previousColumn;
     public int previousRow;
+    
+    private FindMatches findMatches;
+    private Vector2 firstTouchPosition;
+    private Vector2 finalTouchPosition;
+    private GameObject otherDot;
+    private Board board;
+    private Vector2 tempPosition;
+
+    
+
+    [Header("Swipe Stuff")]
+    public float swipeAngle = 0;
     public float swipeResist = 1f;
+
+    [Header("Powerup Stuff")]
+    public bool isColumnBomb;
+    public bool isRowBomb;
+    public GameObject rowBomb;
+    public GameObject columnBomb;
+
     // Start is called before the first frame update
     void Start()
     {
+        isColumnBomb = false;
+        isRowBomb = false;
         board = FindObjectOfType<Board>();
         findMatches = FindObjectOfType<FindMatches>();
         //targetX = (int)transform.position.x;
@@ -33,11 +48,28 @@ public class Dot : MonoBehaviour
         //previousColumn = column;
 
     }
+    // This is for testing and debugging only
+    void OnMouseOver()
+    {
+        //if (Input.GetMouseButtonDown(1))
+        //{
+        //    isColumnBomb = true;
+        //    GameObject bomb = Instantiate(columnBomb, transform.position, Quaternion.identity);
+        //    bomb.transform.parent = this.transform;
+        //}
+        if (Input.GetMouseButtonDown(0))
+        {
+            isRowBomb = true;
+            GameObject bomb = Instantiate(rowBomb, transform.position, Quaternion.identity);
+            bomb.transform.parent = this.transform;
+        }
+      
+    }
 
     // Update is called once per frame
     void Update()
     {
-        //FindMatches();
+        
         if(isMatched)
         {
             SpriteRenderer mySprite = GetComponent<SpriteRenderer>();
